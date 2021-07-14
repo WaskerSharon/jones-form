@@ -41,6 +41,12 @@
     border: none;
 }
 
+.form-error {
+    color: #ff0000;
+    font-size: 1.3rem;
+}
+
+
 /* ::placeholder {
      color: rgb(58, 58, 58);
 } */
