@@ -6,11 +6,10 @@ import * as z  from "zod";
 import "./form.css";
 
 const schema = z.object({
-    firstName: z.string().min(2).refine(s => s.match(/^[-a-zA-Z]*$/)),
-    lastName: z.string().min(2).refine(s => s.match(/^[-a-zA-Z]*$/)),
+    firstName: z.string().min(2, { message: "First name should be at least 2 characters" }).refine(s => s.match(/^[-a-zA-Z]*$/)),
+    lastName: z.string().min(2, { message: "Last name should be at least 2 characters" }).refine(s => s.match(/^[-a-zA-Z]*$/)),
     email: z.string().email({ message: "This is an invalid email address" }),
-    phoneNumber: z.number().max(5, { message: "this👏is👏too👏big" })
-    // phoneNumber: z.string().min(2).refine(s => s.match(/^[0-9]*$/)).refine((val) => val > 5, { message: "Input is too short" }),
+    phoneNumber:  z.string().length(10, { message: "Phone number should be 10 characters" }).refine(s => s.match(/^[0-9]*$/)),
 })
 
 export default function Form() {
@@ -23,13 +22,13 @@ export default function Form() {
           resolver: zodResolver(schema),
         });
 
-    // const onSubmit = (data) => {
-    //     console.log(data);
-    // }
+    const onSubmit = (data) => {
+        console.log(data);
+    }
 
-    const onSubmit = handleSubmit((values) => {
-        console.log(values)
-      })
+    // const onSubmit = handleSubmit((values) => {
+    //     console.log(values)
+    //   })
 
     return (
         <div className="form-contain">
@@ -78,7 +77,7 @@ export default function Form() {
                     <div className="phone-number-contain">
                         <label htmlFor="phoneNumber" className="form-label" >Phone Number</label>
                         <input
-                            type="text"
+                            type="number"
                             name="phoneNumber"
                             id="phoneNumber"
                             className="form-input"
