@@ -6,10 +6,11 @@ import * as z  from "zod";
 import "./form.css";
 
 const schema = z.object({
-    firstName: z.string().min(2),
-    lastName: z.string().min(2),
-    email: z.string().email({ message: "Invalid email addresssssssssssssss......." }),
-    phoneNumber: z.number().nonnegative().int(),
+    firstName: z.string().min(2).refine(s => s.match(/^[-a-zA-Z]*$/)),
+    lastName: z.string().min(2).refine(s => s.match(/^[-a-zA-Z]*$/)),
+    email: z.string().email({ message: "This is an invalid email address" }),
+    phoneNumber: z.number().max(5, { message: "this👏is👏too👏big" })
+    // phoneNumber: z.string().min(2).refine(s => s.match(/^[0-9]*$/)).refine((val) => val > 5, { message: "Input is too short" }),
 })
 
 export default function Form() {
@@ -22,13 +23,17 @@ export default function Form() {
           resolver: zodResolver(schema),
         });
 
-    const onsubmit = (data) => {
-        console.log(data);
-    }
+    // const onSubmit = (data) => {
+    //     console.log(data);
+    // }
+
+    const onSubmit = handleSubmit((values) => {
+        console.log(values)
+      })
 
     return (
         <div className="form-contain">
-            <form className="form" onSubmit={handleSubmit(onsubmit)}>
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="form-title">Jones Form</h1>
 
                 <div className="form-inputs">
@@ -40,12 +45,8 @@ export default function Form() {
                             id="firstName"
                             className="form-input"
                             {...register('firstName')}
-
-                            // value={values.firstName}
-                            // onChange={handleChange}
                         />
                         <p className="form-error"> { errors.firstName?.message } </p>
-                        {/* { errors.firstName && <p className="form-error">{ errors.firstName }</p> } */}
                     </div>
 
                     <div className="last-name-contain">
@@ -56,11 +57,7 @@ export default function Form() {
                             id="lastName"
                             className="form-input"
                             {...register('lastName')}
-
-                            // value={values.lastName}
-                            // onChange={handleChange}
                         />
-                        {/* { errors.lastName && <p className="form-error">{ errors.lastName }</p> } */}
                         <p className="form-error"> { errors.lastName?.message } </p>
 
                     </div>
@@ -73,12 +70,7 @@ export default function Form() {
                             id="email"
                             className="form-input"
                             {...register('email')}
-
-
-                            // value={values.email}
-                            // onChange={handleChange}
                         />
-                        {/* { errors.email && <p className="form-error">{ errors.email }</p> } */}
                         <p className="form-error"> { errors.email?.message } </p>
 
                     </div>
@@ -86,17 +78,12 @@ export default function Form() {
                     <div className="phone-number-contain">
                         <label htmlFor="phoneNumber" className="form-label" >Phone Number</label>
                         <input
-                            type="number"
+                            type="text"
                             name="phoneNumber"
                             id="phoneNumber"
                             className="form-input"
                             {...register('phoneNumber')}
-
-
-                            // value={values.phoneNumber}
-                            // onChange={handleChange}
                         />
-                        {/* { errors.phoneNumber && <p className="form-error">{ errors.phoneNumber }</p> } */}
                         <p className="form-error"> { errors.phoneNumber?.message } </p>
 
                     </div>

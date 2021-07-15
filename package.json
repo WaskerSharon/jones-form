@@ -44,5 +44,9 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3"
+  },
+
+  "compilerOptions": {
+    "strict": true
   }
 }
