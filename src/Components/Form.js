@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z  from "zod";
 import emailjs from 'emailjs-com';
 import { useHistory } from 'react-router-dom';
-
+// import { withRouter } from 'react-router';
 import "./form.css";
 
 const schema = z.object ({
@@ -28,9 +28,9 @@ const schema = z.object ({
         .refine ( s => s.match (/^[0-9]*$/) ),
 })
 
-export default function Form() {
+function Form() {
     
-    let history = useHistory();
+    const history = useHistory();
 
     const {
         register,
@@ -48,8 +48,8 @@ export default function Form() {
               console.log ( error.text );
           });
           document.getElementById ( "form" ).reset();
-          history.push('/FormSuccess');
-      }
+          history.push('/form-success');
+      };
 
 
     return (
@@ -110,8 +110,10 @@ export default function Form() {
                     </div>
                 </div>
               
-                <button type="submit" className="submit-btn" onClick={ () => { history.push( '/FormSuccess' ) } }>SEND</button> 
+                <button type="submit" className="btn submit-btn">SEND</button> 
             </form>
         </div>
     )
 };
+
+export default Form;

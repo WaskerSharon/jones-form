@@ -51,21 +51,31 @@
      color: rgb(58, 58, 58);
 } */
 
-.submit-btn {
-    width: 10rem;
-    height: 4rem;
+
+.btn {
     border-radius: .5rem;
     border: none;
     background-color: #0073ff;
+    height: 4rem;
     color: #f5f5f5;
     letter-spacing: .2rem;
     font-size: 2rem;
-    margin: 3rem auto 0;
     cursor: pointer;
     transition: all .5s ease-in-out;
 }
 
-.submit-btn:hover {
+.btn:hover {
     transform: scale(1.05);
     box-shadow: 0px 5px 12px -1px #000000;
+}
+
+.submit-btn {
+    width: 10rem;    
+    margin: 3rem auto 0;
+}
+
+
+.home-btn {
+    margin: 0 auto;
+    width: 20rem;
 }

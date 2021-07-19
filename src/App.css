@@ -63,3 +63,11 @@ h4 {
 p, span {
   font-size: 1.8rem;
 }
+
+.home-contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* border: 3px solid green; */
+}
