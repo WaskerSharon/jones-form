@@ -23,6 +23,11 @@
     margin-bottom: 5rem;
 }
 
+.form-label {
+    font-size: 1.5rem;
+    border: none;
+}
+
 .form-input {
     border: none;
     border-bottom: 2.8px solid #ffffff;
@@ -31,11 +36,6 @@
     padding: 1rem;
     background: none;
     font-size: 1.8rem;
-}
-
-.form-label {
-    font-size: 1.5rem;
-    border: none;
 }
 
 .form-error {

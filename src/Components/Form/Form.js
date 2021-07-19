@@ -21,13 +21,14 @@ const schema = z.object ({
         z.string()
         .email ( { message: "This is an invalid e-mail address" } ),
 
-    phoneNumber: 
+    phoneInput: 
         z.string()
         .length ( 10, { message: "Phone number should be 10 characters" } )
         .refine ( s => s.match (/^[0-9]*$/) ),
 })
 
-function Form() {
+
+export default function Form() {
     
     const history = useHistory();
 
@@ -36,8 +37,9 @@ function Form() {
         handleSubmit,
         formState: { errors },
     } = useForm ({
-        resolver: zodResolver(schema),
+        resolver: zodResolver(schema)
     });
+
 
     function sendEmail (e) {
         emailjs.sendForm( 'service_0enz2y6', 'template_erk2dls', '#form', 'user_s69tW4xngZ4shJTShUIww' )
@@ -85,7 +87,7 @@ function Form() {
                     <div className="e-mail-contain">
                         <label htmlFor="mailAddress" className="form-label" >Mail Address</label>
                         <input
-                            type="mailAddress"
+                            type="email"
                             name="mailAddress"
                             id="mailAddress"
                             className="form-input"
@@ -96,15 +98,15 @@ function Form() {
                     </div>
 
                     <div className="phone-number-contain">
-                        <label htmlFor="phoneNumber" className="form-label" >Phone Number</label>
+                        <label htmlFor="phoneInput" className="form-label" >Phone Number</label>
                         <input
                             type="number"
-                            name="phoneNumber"
-                            id="phoneNumber"
-                            className="form-input"
-                            { ...register ( 'phoneNumber' ) }
+                            name="phoneInput"
+                            id="phoneInput"
+                            className="form-input form-input-number"
+                            { ...register ( 'phoneInput' ) }
                         />
-                        <p className="form-error"> { errors.phoneNumber?.message } </p>
+                        <p className="form-error"> { errors.phoneInput?.message } </p>
 
                     </div>
                 </div>
@@ -114,5 +116,3 @@ function Form() {
         </div>
     )
 };
-
-export default Form;
