@@ -40,14 +40,14 @@ function Form() {
     });
 
     function sendEmail (e) {
-        emailjs.sendForm('service_0enz2y6', 'template_erk2dls', '#form', 'user_s69tW4xngZ4shJTShUIww')
+        emailjs.sendForm( 'service_0enz2y6', 'template_erk2dls', '#form', 'user_s69tW4xngZ4shJTShUIww' )
           .then (( result ) => {
               console.log ( result.text );
           }, ( error ) => {
               console.log ( error.text );
           });
           document.getElementById ( "form" ).reset();
-          history.push('/form-success');
+          history.push( '/form-success' );
       };
 
 

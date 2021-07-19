@@ -10,8 +10,8 @@ export default function App() {
     <Router className="App">
       <div>
         <Switch>
-          <Route path='/jones-form' exact component={Form}/>
-          <Route path='/form-success' exact component={FormSuccess}/>
+          <Route path='/jones-form' exact component={ Form }/>
+          <Route path='/form-success' exact component={ FormSuccess }/>
         </Switch>
       </div>
     </Router>
