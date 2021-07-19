@@ -104,6 +104,7 @@ export default function Form() {
                             name="phoneInput"
                             id="phoneInput"
                             className="form-input form-input-number"
+                            onWheel={(e) => e.target.blur()}
                             { ...register ( 'phoneInput' ) }
                         />
                         <p className="form-error"> { errors.phoneInput?.message } </p>
