@@ -3,44 +3,58 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z  from "zod";
 import emailjs from 'emailjs-com';
+import { useHistory } from 'react-router-dom';
 
 import "./form.css";
 
-const schema = z.object({
-    firstName: z.string().min(2, { message: "First name should be at least 2 characters" }).refine(s => s.match(/^[-a-zA-Z]*$/)),
-    lastName: z.string().min(2, { message: "Last name should be at least 2 characters" }).refine(s => s.match(/^[-a-zA-Z]*$/)),
-    mailAddress: z.string().email({ message: "This is an invalid e-mail address" }),
-    phoneNumber:  z.string().length(1, { message: "Phone number should be 10 characters" }).refine(s => s.match(/^[0-9]*$/)),
+const schema = z.object ({
+    firstName: 
+        z.string()
+        .min ( 2, { message: "First name should be at least 2 characters" } )
+        .refine ( s => s.match ( /^[-a-zA-Z]*$/ ) ),
+
+    lastName: 
+        z.string()
+        .min ( 2, { message: "Last name should be at least 2 characters" } )
+        .refine ( s => s.match ( /^[-a-zA-Z]*$/ ) ),
+
+    mailAddress: 
+        z.string()
+        .email ( { message: "This is an invalid e-mail address" } ),
+
+    phoneNumber: 
+        z.string()
+        .length ( 1, { message: "Phone number should be 10 characters" } )
+        .refine ( s => s.match (/^[0-9]*$/) ),
 })
 
 export default function Form() {
+    
+    let history = useHistory();
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
+    } = useForm ({
         resolver: zodResolver(schema),
     });
 
-    function sendEmail(e) {
-    
+    function sendEmail (e) {
         emailjs.sendForm('service_0enz2y6', 'template_erk2dls', '#form', 'user_s69tW4xngZ4shJTShUIww')
-          .then((result) => {
-              console.log(result.text);
-          }, (error) => {
-              console.log(error.text);
+          .then (( result ) => {
+              console.log ( result.text );
+          }, ( error ) => {
+              console.log ( error.text );
           });
-          document.getElementById("form").reset()
+          document.getElementById ( "form" ).reset();
+          history.push('/FormSuccess');
       }
 
-    // const onSubmit = handleSubmit((values) => {
-    //     console.log(values)
-    //   })
 
     return (
         <div className="form-contain">
-            <form id="form" className="form" onSubmit={handleSubmit(sendEmail)}>
+            <form id="form" className="form" onSubmit= { handleSubmit ( sendEmail ) }>
                 <h1 className="form-title">Jones Form</h1>
 
                 <div className="form-inputs">
@@ -51,7 +65,7 @@ export default function Form() {
                             name="firstName"
                             id="firstName"
                             className="form-input"
-                            {...register('firstName')}
+                            { ...register ( 'firstName' ) }
                         />
                         <p className="form-error"> { errors.firstName?.message } </p>
                     </div>
@@ -63,7 +77,7 @@ export default function Form() {
                             name="lastName"
                             id="lastName"
                             className="form-input"
-                            {...register('lastName')}
+                            { ...register ( 'lastName' ) }
                         />
                         <p className="form-error"> { errors.lastName?.message } </p>
 
@@ -76,7 +90,7 @@ export default function Form() {
                             name="mailAddress"
                             id="mailAddress"
                             className="form-input"
-                            {...register('mailAddress')}
+                            { ...register ( 'mailAddress' ) }
                         />
                         <p className="form-error"> { errors.mailAddress?.message } </p>
 
@@ -89,14 +103,14 @@ export default function Form() {
                             name="phoneNumber"
                             id="phoneNumber"
                             className="form-input"
-                            {...register('phoneNumber')}
+                            { ...register ( 'phoneNumber' ) }
                         />
                         <p className="form-error"> { errors.phoneNumber?.message } </p>
 
                     </div>
                 </div>
               
-                <button type="submit" className="submit-btn">SEND</button> 
+                <button type="submit" className="submit-btn" onClick={ () => { history.push( '/FormSuccess' ) } }>SEND</button> 
             </form>
         </div>
     )
