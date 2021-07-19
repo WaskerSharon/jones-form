@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z  from "zod";
 import emailjs from 'emailjs-com';
 import { useHistory } from 'react-router-dom';
-// import { withRouter } from 'react-router';
 import "./form.css";
 
 const schema = z.object ({
@@ -24,7 +23,7 @@ const schema = z.object ({
 
     phoneNumber: 
         z.string()
-        .length ( 1, { message: "Phone number should be 10 characters" } )
+        .length ( 10, { message: "Phone number should be 10 characters" } )
         .refine ( s => s.match (/^[0-9]*$/) ),
 })
 

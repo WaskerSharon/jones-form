@@ -1,0 +1,26 @@
+
+.wraper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.success-img {
+    width: 50%;
+    box-shadow: 1px 5px 10px -4px #000000;
+}
+
+.text-wraper {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    height: 18vh;
+}
+
+.back-to-btn {
+    margin: 0 auto;
+    width: 20rem;
+}

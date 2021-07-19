@@ -3,6 +3,7 @@ html {
   font-size: 62.5%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  text-align: center;
 }
 
 *, *:before, *:after {
@@ -37,7 +38,7 @@ h1 {
 
 h2 {
   font-size: 4.5rem;
-  color: #cc51ff;
+  color: #0073ff;
 }
 
 @media (max-width: 768px) {
@@ -56,18 +57,25 @@ h3 {
   }
 }
 
-h4 {
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+
+.btn {
+  border-radius: .5rem;
+  border: none;
+  background-color: #0073ff;
+  height: 4rem;
+  color: #f5f5f5;
+  letter-spacing: .2rem;
   font-size: 2rem;
+  cursor: pointer;
+  transition: all .5s ease-in-out;
 }
 
-p, span {
-  font-size: 1.8rem;
-}
-
-.home-contain {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  /* border: 3px solid green; */
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 5px 12px -1px #000000;
 }
